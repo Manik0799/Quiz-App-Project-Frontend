@@ -40,13 +40,13 @@ function Signup() {
           <div className={classes.buttonWrapper}>
             <button type="submit">Signup</button>
           </div>
-          <a href="#" className={classes.mutedLink}>
+          <span className={classes.mutedLink}>
             Already have an account?
-            <a href="#" className={classes.boldLink} onClick={switchToSignin}>
+            <span className={classes.boldLink} onClick={switchToSignin}>
               Signin
-            </a>
+            </span>
             instead.
-          </a>
+          </span>
       </div>
     </>
   );

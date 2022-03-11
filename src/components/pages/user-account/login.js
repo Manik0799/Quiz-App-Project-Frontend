@@ -24,23 +24,22 @@ function Login() {
             icon="lock"
           />
         </div>
-        <a href="#" className={classes.mutedLink}>
+        <span className={classes.mutedLink}>
           Forget your password?
-        </a>
+        </span>
         <div className={classes.buttonWrapper}>
           <button type="submit">Signin</button>
         </div>
-        <a href="#" className={classes.mutedLink}>
+        <span className={classes.mutedLink}>
           Don't have an account?
-          <a
-            href="#"
+          <span
             className={classes.boldLink}
             onClick={switchToSignup}
           >
             Signup
-          </a>
+          </span>
           instead.
-        </a>
+        </span>
       </div>
     </>
   );
