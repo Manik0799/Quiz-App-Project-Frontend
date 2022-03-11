@@ -1,0 +1,57 @@
+.formContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.formWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.formWrapperRow {
+  width: 100%;
+  display: flex;
+}
+
+.mutedLink {
+  font-size: 13px;
+  color: rgba(100, 128, 141, 0.8);
+  font-weight: 500;
+  text-decoration: none;
+  margin: 10px;
+}
+
+.boldLink {
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    margin: 0 4px;
+    color: var(--fontPrimary);
+}
+
+.buttonWrapper {
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonWrapper button {
+  border: none;
+  outline: none;
+  padding: 11px;
+  margin: 10px 0;
+  border-radius: 10px;
+  color: #fff;
+  background: linear-gradient(
+    90deg,
+    rgb(5, 1, 95) 5%,
+    rgba(21, 61, 108, 1) 59%,
+    rgb(40, 111, 158) 92%,
+    rgb(38, 127, 185) 100%
+  );
+  width: 200px;
+  cursor: pointer;
+}
