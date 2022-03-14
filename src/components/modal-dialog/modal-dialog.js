@@ -12,7 +12,7 @@ import Typography from "@mui/material/Typography";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import { Input, TextField } from "@mui/material";
-import classes from './modal-dialog.module.css';
+import classes from "./modal-dialog.module.css";
 import StyledButton from "../ui-elements/button/button";
 import FieldSet from "../ui-elements/textField/textField";
 
@@ -75,27 +75,30 @@ export default function ModalDialogs(props) {
         <BootstrapDialogTitle
           // id="customized-dialog-title"
           onClose={props.close}
+          className={classes.modalTitle}
         >
           Join Class
         </BootstrapDialogTitle>
-        <DialogContent dividers>
-          <Typography variant="subtitle1">Class Code</Typography>
-          <Typography variant="subtitle4">
-            Ask your teacher for the class code.
-          </Typography>
-          <br />
-          <FieldSet
-            label="Enter code"
-            // id="enter-code-field"
-          />
-        </DialogContent>
+
         <DialogContent className={classes.modalInfo}>
-          To sign in with a class code 
+          To sign in with a class code
           <ul>
             <li>Use an authorized account</li>
             <li>Use a class code with 5-7 letters or numbers without spaces</li>
           </ul>
-             
+        </DialogContent>
+
+        <DialogContent dividers>
+          {/* <Typography variant="subtitle1">Class Code</Typography> */}
+          <Typography variant="subtitle2">
+            Ask your teacher for the class code.
+          </Typography>
+          <FieldSet
+            label="Enter code"
+            // id="enter-code-field"
+            size='small'
+            margin="dense"
+          />
         </DialogContent>
 
         <DialogActions>
