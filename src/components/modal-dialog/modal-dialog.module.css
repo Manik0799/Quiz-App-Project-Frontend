@@ -1,0 +1,11 @@
+.modalInfo {
+    letter-spacing: normal;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5rem;
+}
+
+.modalInfo li {
+    font-size: 0.80rem;
+}
+

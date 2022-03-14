@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import TextInput from "../../textinput/textinput";
 import { AccountContext } from "./account-context";
 
@@ -24,9 +25,9 @@ function Login() {
             icon="lock"
           />
         </div>
-        <span className={classes.mutedLink}>
+        <Link to='/rest-password' className={classes.mutedLink}>
           Forget your password?
-        </span>
+        </Link>
         <div className={classes.buttonWrapper}>
           <button type="submit">Signin</button>
         </div>

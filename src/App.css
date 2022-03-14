@@ -8,6 +8,7 @@
   --questionBG: #d6e1f1;
   --fontPrimary: #002333;
   --active: #4890c0;
+  --hover: #053e58;
 }
 
 * {
@@ -33,11 +34,6 @@ h4 {
   border-bottom: 1px solid #e5e5e5;
   padding: 10px 0;
   margin-bottom: 10px;
-}
-
-.info {
-  margin-top: 1rem;
-  text-align: center;
 }
 
 .error {
