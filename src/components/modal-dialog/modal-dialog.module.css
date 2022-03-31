@@ -1,20 +1,19 @@
 .modalTitle {
-background-color: var(--fontPrimary);
-color: #fff;
+  background-color: var(--fontPrimary);
+  color: #fff !important;
 }
 
 .modalInfo {
-    letter-spacing: normal;
-    font-size: 1.1rem;
-    font-weight: 500;
-    line-height: 1.5rem;
-    margin-top: 10px;
-    margin-right: 8px;
+  letter-spacing: normal;
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  margin-top: 10px;
+  margin-right: 8px;
 }
 
 .modalInfo li {
-    font-size: 0.85rem;
-    padding-top: 3px;
-    margin-left: 17px;
+  font-size: 0.85rem;
+  padding-top: 3px;
+  margin-left: 17px;
 }
-

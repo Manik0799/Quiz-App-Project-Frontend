@@ -25,7 +25,7 @@ function Login() {
             icon="lock"
           />
         </div>
-        <Link to='/rest-password' className={classes.mutedLink}>
+        <Link to='/reset-password' className={classes.mutedLink}>
           Forget your password?
         </Link>
         <div className={classes.buttonWrapper}>

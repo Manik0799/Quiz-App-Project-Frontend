@@ -1,0 +1,14 @@
+.timerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: var(--questionBG);
+    border-radius: 10px;
+    padding: 8px;
+    /* margin: 0 40%;
+    width: 225px; */
+}
+
+.timerContainer span {
+    font-size: 20px;
+}

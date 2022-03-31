@@ -1,6 +1,5 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
@@ -9,9 +8,7 @@ import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Typography from "@mui/material/Typography";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import { Input, TextField } from "@mui/material";
+import {green} from '@mui/material/colors';
 import classes from "./modal-dialog.module.css";
 import StyledButton from "../ui-elements/button/button";
 import FieldSet from "../ui-elements/textField/textField";
@@ -38,11 +35,12 @@ const BootstrapDialogTitle = (props) => {
           sx={{
             position: "absolute",
             right: 8,
-            top: 8,
-            color: (theme) => theme.palette.grey[500],
+            top: 13,
+            color: 'white',
+            backgroundColor: 'white'
           }}
         >
-          <CloseIcon />
+          <CloseIcon sx={{ color: green[50] }} />  {/*TODO: fix color of icon */}
         </IconButton>
       ) : null}
     </DialogTitle>
@@ -63,7 +61,10 @@ export default function ModalDialogs(props) {
   // const handleClose = () => {
   //   setOpen(false);
   // };
-  const handleJoinClass = () => {};
+  const handleJoinClass = () => {
+    
+
+  };
 
   return (
     <div>
@@ -96,7 +97,7 @@ export default function ModalDialogs(props) {
           <FieldSet
             label="Enter code"
             // id="enter-code-field"
-            size='small'
+            size="small"
             margin="dense"
           />
         </DialogContent>
