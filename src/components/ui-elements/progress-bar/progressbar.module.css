@@ -12,11 +12,11 @@
   display: grid;
   justify-content: space-between;
   align-items: center;
-  grid-template-columns: 50px 1fr auto;
-  gap: 20px;
+grid-template-columns: 6fr 1fr auto;  
+gap: 20px;
 }
 
-.progressBar .backButton {
+/* .progressBar .backButton {
   width: 50px;
   height: 50px;
   border-radius: 8px;
@@ -26,14 +26,12 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-}
-
-.progressBar .backButton:hover {
-  background: #47bef53a;
-}
+} */
 
 .nextButton {
-  margin-right: 10px;
+  /* margin-right: 10px; */
+  display: flex;
+  justify-content: flex-end;
 }
 
 .next span {
@@ -41,19 +39,15 @@
   font-size: 20px;
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1080px) {
   .progressBar {
     width: calc(100vw - 60px);
-    bottom: 10px;
+    bottom: 10px;  
+    grid-template-columns: 4fr 1fr auto;
   }
 
-  .progressBar .backButton {
-    width: 40px;
-    height: 40px;
-  }
-
-  .next span:first-child {
-    display: none;
+  .next span {
+    /* display: none; */
     color: #fff;
     margin-right: 10px;
   }
@@ -62,13 +56,13 @@
 .rangeArea {
   width: 100%;
   position: relative;
-  margin: 0 auto;
+  margin: 0 20px;
 }
 
 .rangeBody {
   width: 100%;
   height: 4px;
-  margin: 0 auto;
+  margin: 0 ;
   background: #c2c7ce;
   border: none;
   outline: none;

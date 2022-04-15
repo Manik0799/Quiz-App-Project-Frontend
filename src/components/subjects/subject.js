@@ -19,7 +19,7 @@ export default function Subject() {
   return (
     <>
       <Marginer direction="vertical" margin={15} />
-      <Card sx={{ maxWidth: 350, borderRadius: 3 }}>
+      <Card sx={{ maxWidth: 350, borderRadius: 3, bgcolor: "whitesmoke" }}>
         <CardActionArea>
           <CardHeader
             avatar={

@@ -9,7 +9,6 @@
     font-weight: 600;
 }
 
-
 .account span {
     display: flex;
     justify-content: space-between;
@@ -17,9 +16,9 @@
     margin-left: 10px;
 }
 
-.account span:hover {
+/* .account span:hover {
     background: rgb(240, 240, 240);
-}
+} */
 /* .account > span:last-child {
     cursor: pointer;
 } */

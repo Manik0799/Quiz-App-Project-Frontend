@@ -1,0 +1,29 @@
+.container {
+    margin: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.sideBar {
+    flex-direction: column;
+    text-align: center;
+}
+
+.analysis {
+    flex-direction: column;
+}
+
+.analysisHeader{
+    display: flex;
+ justify-content: space-between;
+}
+
+.analysisChart {
+    border: 1px solid var(--hover);
+    width: 530px;
+    height: 300px;
+}
+
+.analysisNav button {
+    margin-right: 15px;
+}

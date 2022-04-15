@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Marginer } from "../../marginer/marginer";
+import ModalDialogs from "../../modal-dialog/modal-dialog";
 import StyledButton from "../../ui-elements/button/button";
 import classes from "./start-quiz.module.css";
 
 function StartQuiz() {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason !== "backdropClick") {
+      setModalOpen(false);
+    }
+  };
+
+  const handleConfirmation = (e) => {
+    e.preventDefault();
+    setModalOpen(true);
+  };
   return (
     <>
       <div className={classes.heading}>
@@ -22,7 +35,17 @@ function StartQuiz() {
       <div className={classes.heading}>
         <h4>QUIZ - 4</h4>
       </div>
-
+      {modalOpen && (
+        <ModalDialogs
+          open={modalOpen}
+          close={handleClose}
+          hideBackdrop={true}
+          title="Continue?"
+          button1="Agree"
+          bulletList1="The next page will open on fullscreen."
+          bulletList2="If you exit the fullscreen, the quiz will be auto submitted."
+        />
+      )}
       <Marginer direction="vertical" margin={15} />
       <div className={classes.aboutQuiz}>
         <div className={classes.details}>
@@ -32,9 +55,9 @@ function StartQuiz() {
           <Marginer direction="vertical" margin={10} />
           <h2>No. of Questions: 20</h2>
           <Marginer direction="vertical" margin={25} />
-          <Link to="/quiz-page">
-            <StyledButton>Start Quiz</StyledButton>
-          </Link>
+          {/* <Link to="/quiz-page"> */}
+          <StyledButton onClick={handleConfirmation}>Start Quiz</StyledButton>
+          {/* </Link> */}
         </div>
 
         <div className={classes.info}>
@@ -58,21 +81,20 @@ function StartQuiz() {
             <br />
             <li>
               <strong>Timing</strong> - You will need to complete each of your
-              attempts in one<br />
-              sitting, as you are allotted 30 minutes to complete each
-              attempt
+              attempts in one
+              <br />
+              sitting, as you are allotted 30 minutes to complete each attempt
             </li>
           </ul>
           <Marginer direction="vertical" margin={25} />
           <p>
-            To start, click the <strong>"Take the Quiz"</strong> button.    
+            To start, click the <strong>"Take the Quiz"</strong> button.
           </p>
           <p>
-            When finished, click the
-            <strong>"Submit Quiz"</strong> button.
+            When finished, click the <strong>"Submit Quiz"</strong> button.
           </p>
           <Marginer direction="vertical" margin={15} />
-          <p>Only registered, enrolled users can take graded quizzes</p>
+          <p>Only registered, enrolled users can take graded quizzes!</p>
         </div>
       </div>
     </>
