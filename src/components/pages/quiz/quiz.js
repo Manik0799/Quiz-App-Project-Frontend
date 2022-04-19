@@ -1,39 +1,106 @@
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Answers from "../../answers/answers";
 import { Marginer } from "../../marginer/marginer";
 import Timer from "../../timer/timer";
 import ProgressBar from "../../ui-elements/progress-bar/progressbar";
-import screenfull from 'screenfull';
+import screenfull from "screenfull";
+import QuestionData from "../../questions/questions.json";
+import Score from "../score-page/score";
+import classes from "./quiz.module.css";
+import Checkbox from "../../ui-elements/checkbox/checkbox";
 
-
-import classes from './quiz.module.css';
 import StyledButton from "../../ui-elements/button/button";
 
 export default function Quiz(props) {
-  // const handle = useFullScreenHandle();
-
-  if(screenfull.isEnabled) {
+  if (screenfull.isEnabled) {
     screenfull.request();
+
     // screenfull.on("error", (event) => {
     //   console.error("Failed to enable fullscreen", event);
     //   alert('Failed to enable fullscreen');
     // });
   }
 
-    return (
-      <>
+  let max = QuestionData.no_of_questions;
+  let min = 0;
+  console.log("===max , no of ques", max);
+  // const [currentQuestion, setCurrentQuestion] = useState(Math.floor(Math.random() * max));
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [questionCount, setQuestionCount] = useState(0);
+  const [score, setScore] = useState(0);
+  const [showScore, setShowScore] = useState(false);
 
-          <div className={classes.timerContainer}>
-            <h3>Time Remaining: </h3>
-            <Timer />
-            <span className="material-icons-outlined">timer</span>
-          </div>
-          <Marginer direction="vertical" margin={15} />
-          <h1>Why is the weather so hot? 🥵</h1>
-          <h4>Question can have multiple answers...</h4>
-          {/*dont show this under every question, instead keep under instructions*/}
-          <Answers />
-          <ProgressBar />
-        
+  const handleNextQuestion = () => {
+    const Next = currentQuestion + 1;
+    setCurrentQuestion(Next);
+    setQuestionCount(questionCount + 1);
+  };
+
+  const handleSubmit = () => {
+    setShowScore(true)
+  };
+
+  const handleAnswerClick = (isCorrect) => {
+
+    if (isCorrect === QuestionData.questions[currentQuestion].correct_option_id)
+      setScore(score + QuestionData.questions[currentQuestion].max_marks);
+  };
+
+  return (
+    <>
+      <div className={classes.timerContainer}>
+        <h3>Time Remaining: </h3>
+        <Timer />
+        <span className="material-icons-outlined">timer</span>
+      </div>
+      <Marginer direction="vertical" margin={15} />
+      {/* <h1>Why is the weather so hot? 🥵</h1> */}
+      <h1>{QuestionData.questions[currentQuestion].question}</h1>
+      <h4>Question can have multiple answers...</h4>
+      {/*dont show this under every question, instead keep under instructions*/}
+      <div className={classes.answers}>
+        {QuestionData.questions[currentQuestion].options.map((ans, idx) => {
+          return (
+            <Checkbox
+              className={classes.answer}
+              key={ans.description}
+              // value={ans.description}
+              // name={ans.description}
+              text={ans.description}
+              onClick={(e) => handleAnswerClick(ans.option_id)}
+            />
+          );
+        })}
+      </div>
+      {/* <Answers currentQuestion={currentQuestion} /> */}
+      {/* <ProgressBar nextQuestion={currentQuestion} /> */}
+      {/* Score#: {score} out of {QuestionData.total_marks} send score to <Score /> */}
+
+      <Marginer direction="vertical" margin={30} />
+      <div className={classes.nextButton}>
+        {/* <Link to="/quiz-page"> */}
+        {console.log("===count", questionCount)}
+        {questionCount === max - 1 ? (
+          // <Link to="/score-page">
+          <StyledButton
+            className={classes.next}
+            // routing to score-page
+            // setShowScore(true)
+            onClick={handleSubmit}
+          >
+            Submit Quiz
+          </StyledButton>
+        ) : (
+          // </Link>
+          <StyledButton className={classes.next} onClick={handleNextQuestion}>
+            Next Question
+            <span className="material-icons-outlined">arrow_forward</span>
+          </StyledButton>
+        )}
+      </div>
+
+      {showScore && <Score score={score} />}
     </>
-    );
+  );
 }

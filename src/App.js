@@ -10,6 +10,7 @@ import './App.css';
 import Quiz from './components/pages/quiz/quiz';
 import Analysis from './components/pages/analysis/analysis';
 import StartQuiz from './components/pages/quiz/start-quiz';
+import Score from './components/pages/score-page/score';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path='/start-quiz-page' element={<StartQuiz />} />
         <Route path='/quiz-page' element={<Quiz />} />
         <Route path='/analysis-page' element={<Analysis />} />
+        <Route path='/score-page' element={<Score />} />
       </Routes> 
     </Layout>
     </Router> 

@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 import StyledButton from "../button/button";
 import classes from "./progressbar.module.css";
 
-export default function ProgressBar() {
+export default function ProgressBar(props) {
+  console.log('=== progressbar.js', props.currentQuestion);
+
   return (
     <div className={classes.progressBar}>
       
@@ -13,12 +15,12 @@ export default function ProgressBar() {
         </div>
       </div>
       <div className={classes.nextButton}>
-        <Link to="/quiz-page">
-          <StyledButton className={classes.next}>
+        {/* <Link to="/quiz-page"> */}
+          <StyledButton className={classes.next} onClick={props.currentQuestion}>
             Next Question {/*submit quiz if progress % is 100% */}
             <span className="material-icons-outlined">arrow_forward</span>
           </StyledButton>
-        </Link>
+        {/* </Link> */}
       </div>
     </div>
   );

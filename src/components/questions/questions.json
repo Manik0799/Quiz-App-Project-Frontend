@@ -1,0 +1,116 @@
+{
+    "_id" : "6252cfe8301543affe884ea8",
+    "course_id" : "6242d648129d9865faaa471d",
+    "no_of_questions" : 4,
+    "start_time" : "",
+    "duration" : 10,
+    "questions" : [ 
+        {
+            "question" : "What is the capital of India?",
+            "type" : "default",
+            "time_duration" : 60,
+            "max_marks" : 5,
+            "correct_option_id" : "2",
+            "options" : [ 
+                {
+                    "option_id" : "1",
+                    "description" : "Mumbai"
+                }, 
+                {
+                    "option_id" : "2",
+                    "description" : "New Delhi"
+                }, 
+                {
+                    "option_id" : "3",
+                    "description" : "Kolkata"
+                }, 
+                {
+                    "option_id" : "4",
+                    "description" : "Chandigarh"
+                }
+            ],
+            "question_id" : "6252cfe8301543affe884ea6"
+        }, 
+        {
+            "question" : "What is the full form of USA?",
+            "type" : "default",
+            "time_duration" : 60,
+            "max_marks" : 5,
+            "correct_option_id" : "3",
+            "options" : [ 
+                {
+                    "option_id" : "1",
+                    "description" : "United Spirit Alliance"
+                }, 
+                {
+                    "option_id" : "2",
+                    "description" : "United Sovereign Alliance"
+                }, 
+                {
+                    "option_id" : "3",
+                    "description" : "United States of America"
+                }, 
+                {
+                    "option_id" : "4",
+                    "description" : "United Structure of America"
+                }
+            ],
+            "question_id" : "6252cfe8301543affe884ea7"
+        },
+        {
+          "question": "The iPhone was created by which company?",
+          "type": "default",
+          "time_duration": 60,
+          "max_marks": 5,
+          "correct_option_id": "1",
+          "options": [
+            {
+              "option_id": "1",
+              "description": "Apple"
+            },
+            {
+              "option_id": "2",
+              "description": "Microsoft"
+            },
+            {
+              "option_id": "3",
+              "description": "Google"
+            },
+            {
+              "option_id": "4",
+              "description": "Intel"
+            }
+          ],
+          "question_id": "6252cfe8301543affe884ea8"
+        },
+        {
+          "question": "How many Harry Potter books are there?",
+          "type": "default",
+          "time_duration": 60,
+          "max_marks": 5,
+          "correct_option_id": "4",
+          "options": [
+            {
+              "option_id": "1",
+              "description": "1"
+            },
+            {
+              "option_id": "2",
+              "description": "4"
+            },
+            {
+              "option_id": "3",
+              "description": "6"
+            },
+            {
+              "option_id": "4",
+              "description": "7"
+            }
+          ],
+          "question_id": "6252cfe8301543affe884ea9"
+        }
+    ],
+    "end_time" : 20,
+    "total_marks" : 20,
+    "created_at" : ""
+}
