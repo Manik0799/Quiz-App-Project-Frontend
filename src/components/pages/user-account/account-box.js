@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Login from "./login";
 import Signup from './signup';
 import { motion } from "framer-motion";
+import axios from "axios";
 
 import classes from "./account-box.module.css";
 import { AccountContext } from "./account-context";
@@ -9,6 +10,7 @@ import { AccountContext } from "./account-context";
 function AccountBox() {
   const [expanded, setExpanded] = useState(false);
   const [active, setActive] = useState("signin");
+  const [responseData, setResponseData] = useState();
 
   const backdropVariants = {
     expanded: {
@@ -54,7 +56,17 @@ function AccountBox() {
 
   const contextValue = { switchToSignup, switchToSignin };
 
-  return (
+
+  const getRes = async () => {
+    let response = await axios.get(
+      "http://localhost:8000/course/6242d648129d9865faaa471d"
+    );
+    console.log(response);
+  }
+  
+  return ( 
+    <>
+    <button onClick={getRes}>click me</button>
     <AccountContext.Provider value={contextValue}>
     <div className={classes.boxContainer}>
       <div className={classes.topContainer}>
@@ -79,6 +91,8 @@ function AccountBox() {
       </div>
     </div>
     </AccountContext.Provider>
+
+    </>
   );
 }
 
