@@ -57,16 +57,16 @@ function AccountBox() {
   const contextValue = { switchToSignup, switchToSignin };
 
 
-  const getRes = async () => {
-    let response = await axios.get(
-      "http://localhost:8000/course/6242d648129d9865faaa471d"
-    );
-    console.log(response);
-  }
+  // const getRes = async () => {
+  //   let response = await axios.get(
+  //     "http://localhost:8000/course/627369626075c5090bd9c49d"
+  //   );
+  //   console.log(response);
+  // }
   
   return ( 
     <>
-    <button onClick={getRes}>click me</button>
+    {/* <button onClick={getRes}>click me</button> */}
     <AccountContext.Provider value={contextValue}>
     <div className={classes.boxContainer}>
       <div className={classes.topContainer}>
@@ -77,7 +77,7 @@ function AccountBox() {
           className={classes.backdrop}
         />
         {active === 'signin' && <div className={classes.headerContainer}>
-          <h2>Welcome Back</h2>
+          <h2>Welcome</h2>
           <h5>Please sign-in to continue!</h5>
         </div>}
         {active === 'signup' && <div className={classes.headerContainer}>

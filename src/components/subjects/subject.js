@@ -14,8 +14,23 @@ import { blue } from "@mui/material/colors";
 import { ArrowForwardOutlined, AssessmentOutlined } from "@mui/icons-material";
 import { Marginer } from "../marginer/marginer";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-export default function Subject() {
+export default function Subject(props) {
+
+  const handleSubjectCardClick = async() => {
+    // Make request to the fetch course information API
+    const API_URL = "http://localhost:8000/course/" + props.id;
+
+    const response = await axios(
+      {
+            method : "get",
+            url : API_URL,
+      }
+    );
+
+    console.log(response.data)
+  }
   return (
     <>
       <Marginer direction="vertical" margin={15} />
@@ -24,7 +39,7 @@ export default function Subject() {
           <CardHeader
             avatar={
               <Avatar sx={{ bgcolor: blue[900] }} aria-label="subject">
-                KS
+                {props.name.substring(0,1)}
               </Avatar>
             }
             action={
@@ -32,8 +47,8 @@ export default function Subject() {
                 <MoreVertIcon />
               </IconButton>
             }
-            title="CSPC-402, System Programming and Compiler Design"
-            subheader="B.Tech CSE 8th Sem"
+            title={props.code + " , " + props.name}
+            // subheader="B.Tech CSE 8th Sem"
           />
           <CardMedia
             component="img"
@@ -51,14 +66,13 @@ export default function Subject() {
             </IconButton>
           </Link>
 
-          <Link to="/subject-landing-page">
             <IconButton
               aria-label="details"
               sx={{ color: blue[900], marginLeft: 32 }}
+              onClick = {handleSubjectCardClick}
             >
               <ArrowForwardOutlined />
             </IconButton>
-          </Link>
         </CardActions>
       </Card>
     </>

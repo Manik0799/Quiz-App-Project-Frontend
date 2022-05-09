@@ -5,13 +5,15 @@ import Landingpage from './components/pages/landing-page/landingpage';
 // import Login from './components/pages/user-account/login';
 import StudentLandPage from './components/pages/student-dashboard/student-landing-page';
 import SubjectPage from './components/pages/student-dashboard/subject-landing-page';
+import TeacherLandingPage from './components/pages/teacher/teacher-landing-page';
 
 import './App.css';
 import Quiz from './components/pages/quiz/quiz';
 import Analysis from './components/pages/analysis/analysis';
 import StartQuiz from './components/pages/quiz/start-quiz';
 import Score from './components/pages/score-page/score';
-
+import Form from './components/pages/quiz/create-quiz-form'
+import {RequireToken} from './Auth'
 
 function App() {
   return (
@@ -21,12 +23,34 @@ function App() {
         <Route exact path='/' element={<Landingpage/>} />
         {/* <Route exact path='/signup' element={<Signup/>} />
         <Route exact path='/login' element={<Login />} /> */}
-        <Route path='/student-landing-page' element={<StudentLandPage/>} />
+
+
+        <Route 
+          path='/student-landing-page' 
+          element={
+            <RequireToken>
+            <StudentLandPage/>
+            </RequireToken>
+          } 
+        />
+
+        <Route 
+          path='/teacher-landing-page' 
+          element={
+            <RequireToken>
+            <TeacherLandingPage/>
+            </RequireToken>
+          } 
+        />
+
         <Route path='/subject-landing-page' element={<SubjectPage />} />
         <Route path='/start-quiz-page' element={<StartQuiz />} />
         <Route path='/quiz-page' element={<Quiz />} />
         <Route path='/analysis-page' element={<Analysis />} />
         <Route path='/score-page' element={<Score />} />
+        <Route path='/create-quiz' element={<Form />} />
+
+
       </Routes> 
     </Layout>
     </Router> 

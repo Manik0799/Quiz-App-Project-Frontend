@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
+import CreateCourseModal from "../../modal-dialog/create-course-modal";
 import emptyClass from "../../../assests/images/virtual-class.png";
-import classes from "./student-landing-page.module.css";
+import classes from "./teacher-landing-page.module.css";
 import StyledButton from "../../ui-elements/button/button";
 import Subject from "../../subjects/subject";
 // import AddPlus from '@mui/icons-material/Add';
 import axios from "axios";
 import {fetchToken} from '../../../Auth'
-import JoinCourseModal from "../../modal-dialog/join-course-modal";
+import { Button } from "@mui/material";
 
-function StudentLandPage() {
+function TeacherLandingPage() {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [courses, setCourses] = useState([])
+
 
     useEffect(() => {
 
@@ -23,7 +25,7 @@ function StudentLandPage() {
               const response = await axios(
                 {
                   method : "get",
-                  url : "http://localhost:8000/student-joined-courses",
+                  url : "http://localhost:8000/teacher-fetchCourseList",
                   headers: {
                         'Authorization': authHeader
                   }
@@ -40,7 +42,7 @@ function StudentLandPage() {
         fetchData();
     }, []);
 
-    console.log(courses);
+
 
   const handleClickOpen = () => {
       setModalOpen(true);
@@ -50,13 +52,14 @@ function StudentLandPage() {
     setModalOpen(false);
   };
 
+
   return (
     <div>
       <div className={classes.emptyClass}>
         {/* <img src={emptyClass} alt="Join a class" /> */}
 
         {modalOpen && (
-          <JoinCourseModal
+          <CreateCourseModal
             openHandler={handleClickOpen}
             closeHandler={handleClose}
           />
@@ -65,30 +68,21 @@ function StudentLandPage() {
         <div className={classes.btnWrapper}> 
           {/* <Button variant="outlined">Create Class</Button>  */}
           <StyledButton variant="contained" onClick={handleClickOpen}> 
-            Join Class
+            Create Class 
           </StyledButton> 
          </div>
-
-        {/* <div className={classes.btnWrapper}> */}
-          {/* <Button variant="outlined">Create Class</Button> */}
-          {/* <StyledButton variant="contained" onClick={handleClick}> */}
-            {/* Join Class */}
-          {/* </StyledButton> */}
-        {/* </div> */}
         
       </div>
       {/* <CustomizedDialogs /> */}
       
-
+            
       {/* Mapping the fetched course data to display subject cards */}
       {courses.map(course => {
-        return <Subject key = {course.id} code = {course.course_code} name = {course.course_name}
-          id = {course.id}
-        />
+        return <Subject key = {course.id} code = {course.course_code} name = {course.course_name}/>
       })}
       {/* <Subject /> */}
     </div>
   );
 }
 
-export default StudentLandPage;
+export default TeacherLandingPage;
