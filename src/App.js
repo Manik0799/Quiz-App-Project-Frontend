@@ -1,59 +1,114 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Layout from './components/layout/layout';
-import Landingpage from './components/pages/landing-page/landingpage';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Layout from "./components/layout/layout";
+import Landingpage from "./components/pages/landing-page/landingpage";
 // import Signup from './components/pages/user-account/signup';
 // import Login from './components/pages/user-account/login';
-import StudentLandPage from './components/pages/student-dashboard/student-landing-page';
-import SubjectPage from './components/pages/student-dashboard/subject-landing-page';
-import TeacherLandingPage from './components/pages/teacher/teacher-landing-page';
+import StudentLandPage from "./components/pages/student-dashboard/student-landing-page";
+import SubjectPage from "./components/pages/student-dashboard/subject-landing-page";
+import TeacherLandingPage from "./components/pages/teacher/teacher-landing-page";
 
-import './App.css';
-import Quiz from './components/pages/quiz/quiz';
-import Analysis from './components/pages/analysis/analysis';
-import StartQuiz from './components/pages/quiz/start-quiz';
-import Score from './components/pages/score-page/score';
-import Form from './components/pages/quiz/create-quiz-form'
-import {RequireToken} from './Auth'
+import "./App.css";
+import Quiz from "./components/pages/quiz/quiz";
+import Analysis from "./components/pages/analysis/analysis";
+import StartQuiz from "./components/pages/quiz/start-quiz";
+import Score from "./components/pages/score-page/score";
+import Form from "./components/pages/quiz/create-quiz-form";
+import { RequireToken } from "./Auth";
+import NavBar from "./components/navbar/navbar";
 
 function App() {
   return (
-    <Router>
-    <Layout>
-      <Routes>
-        <Route exact path='/' element={<Landingpage/>} />
-        {/* <Route exact path='/signup' element={<Signup/>} />
-        <Route exact path='/login' element={<Login />} /> */}
+    <>
+      <Router>
+        <Layout>
+          <Routes>
+            <Route exact path="/" element={<Landingpage />} />
+          </Routes>
 
+          <div>
+            <Routes>
+              <Route
+                path="/student-landing-page"
+                element={
+                  <RequireToken>
+                    <NavBar />
+                    <StudentLandPage />
+                  </RequireToken>
+                }
+              />
 
-        <Route 
-          path='/student-landing-page' 
-          element={
-            <RequireToken>
-            <StudentLandPage/>
-            </RequireToken>
-          } 
-        />
+              <Route
+                path="/teacher-landing-page"
+                element={
+                  <RequireToken>
+                    <NavBar />
+                    <TeacherLandingPage />
+                  </RequireToken>
+                }
+              />
 
-        <Route 
-          path='/teacher-landing-page' 
-          element={
-            <RequireToken>
-            <TeacherLandingPage/>
-            </RequireToken>
-          } 
-        />
-
-        <Route path='/subject-landing-page' element={<SubjectPage />} />
-        <Route path='/start-quiz-page' element={<StartQuiz />} />
-        <Route path='/quiz-page' element={<Quiz />} />
-        <Route path='/analysis-page' element={<Analysis />} />
-        <Route path='/score-page' element={<Score />} />
-        <Route path='/create-quiz' element={<Form />} />
-
-
-      </Routes> 
-    </Layout>
-    </Router> 
+              <Route
+                path="/subject-landing-page"
+                element={
+                  <>
+                    <NavBar />
+                    <SubjectPage />
+                  </>
+                }
+              />
+              <Route
+                path="/start-quiz-page"
+                element={
+                  <>
+                    <NavBar />
+                    <StartQuiz />
+                  </>
+                }
+              />
+              <Route
+                path="/quiz-page"
+                element={
+                  <>
+                    {" "}
+                    <NavBar />
+                    <Quiz />
+                  </>
+                }
+              />
+              <Route
+                path="/analysis-page"
+                element={
+                  <>
+                    {" "}
+                    <NavBar />
+                    <Analysis />
+                  </>
+                }
+              />
+              <Route
+                path="/score-page"
+                element={
+                  <>
+                    <NavBar />
+                    <Score />
+                  </>
+                }
+              />
+              <Route
+                path="/create-quiz"
+                element={
+                  <>
+                    {" "}
+                    <NavBar />
+                    <Form />
+                  </>
+                }
+              />
+            </Routes>
+          </div>
+        </Layout>
+      </Router>
+    </>
   );
 }
 

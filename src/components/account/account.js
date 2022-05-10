@@ -41,14 +41,14 @@ export default function Account() {
         navigate("/");
     }
 
-  let div1text = "To sign in with a class code";
-  let div2text = "Use an authorized account";
-  let div3text = "Use a class code with (generally 24 characters in length)";
-  let div4text = "Ask your teacher for the class code.";
+  // let div1text = "To sign in with a class code";
+  // let div2text = "Use an authorized account";
+  // let div3text = "Use a class code with (generally 24 characters in length)";
+  // let div4text = "Ask your teacher for the class code.";
 
   return (
     <div className={classes.account}>
-      {modalOpen && (
+      {/* {modalOpen && (
         <ModalDialogs
           open={modalOpen}
           close={handleClose}
@@ -59,7 +59,7 @@ export default function Account() {
           bulletList2={div3text}
           contentDiv2={div4text}
         />
-      )}
+      )} */}
       {/* <span
         className="material-icons-outlined"
         title="Join Class"
@@ -67,9 +67,9 @@ export default function Account() {
       >
         add
       </span> */}
-      <IconButton aria-label="Join Class" onClick={handleClick}>
+      {/* <IconButton aria-label="Join Class" onClick={handleClick}>
         <AddOutlinedIcon />
-      </IconButton>
+      </IconButton> */}
       <div className={classes.profileMenu}>
         <IconButton
           aria-label="account of current user"
