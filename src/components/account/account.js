@@ -16,8 +16,8 @@ export default function Account() {
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
 
-  // const token = fetchToken()
-  // const user_data = JSON.parse(atob(token.split('.')[1]))
+  const token = fetchToken()
+  const user_data = JSON.parse(atob(token.split('.')[1]))
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -41,35 +41,10 @@ export default function Account() {
         navigate("/");
     }
 
-  // let div1text = "To sign in with a class code";
-  // let div2text = "Use an authorized account";
-  // let div3text = "Use a class code with (generally 24 characters in length)";
-  // let div4text = "Ask your teacher for the class code.";
 
   return (
     <div className={classes.account}>
-      {/* {modalOpen && (
-        <ModalDialogs
-          open={modalOpen}
-          close={handleClose}
-          title="Join Class"
-          button1="Join"
-          contentDiv1={div1text}
-          bulletList1={div2text}
-          bulletList2={div3text}
-          contentDiv2={div4text}
-        />
-      )} */}
-      {/* <span
-        className="material-icons-outlined"
-        title="Join Class"
-        onClick={handleClick}
-      >
-        add
-      </span> */}
-      {/* <IconButton aria-label="Join Class" onClick={handleClick}>
-        <AddOutlinedIcon />
-      </IconButton> */}
+      
       <div className={classes.profileMenu}>
         <IconButton
           aria-label="account of current user"
@@ -96,12 +71,12 @@ export default function Account() {
           open={Boolean(anchorEl)}
           onClose={handleCollapseDetails}
         >
-          {/* <MenuItem onClick={handleCollapseDetails}>
-            <p>Nischal Gupta</p>
-          </MenuItem> */}
+
           <MenuItem onClick={handleCollapseDetails}>
-            <p>nischalg.cs.18@nitj.ac.in</p>
-             {/* <p>{user_data.email}</p> */}
+             <p>{user_data.email}</p>
+          </MenuItem>
+          <MenuItem onClick={handleCollapseDetails}>
+             <p>{user_data.userType}</p>
           </MenuItem>
           <MenuItem>
             <Link to="/change-password-page">Change Password</Link>

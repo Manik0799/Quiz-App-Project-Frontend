@@ -1,15 +1,63 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Marginer } from "../../marginer/marginer";
 import StyledButton from "../../ui-elements/button/button";
 import AssessmentOutlinedIcon from "@mui/icons-material/AssessmentOutlined";
 import classes from "./subject-landing-page.module.css";
+import { fetchToken } from "../../../Auth";
+import axios from "axios";
+import QuizCard from "../../ui-elements/card/quizCard";
+import JoinQuizModal from "../../modal-dialog/join-quiz-modal";
 
 function SubjectPage(props) {
   const { state } = useLocation();
   // const { courseList } = state;
   console.log(state);
   const { courses } = state;
+  
+  const [modalOpen, setModalOpen] = useState(false);
+  const [quizzes, setQuizzes] = useState([])
+
+  useEffect(() => {
+
+        const token = fetchToken();
+        let authHeader = "bearer " + token
+        
+        const fetchData = async () => {
+
+          const API_URL = "http://localhost:8000/student-given-quizzes/" + courses._id;
+            try {
+              const response = await axios(
+                {
+                  method : "get",
+                  url : API_URL,
+                  headers: {
+                        'Authorization': authHeader
+                  }
+                }
+              );
+              
+              // console.log(response.data)
+              setQuizzes(response.data)
+                
+            } catch (error) {
+                console.log("error", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+
+    const handleClickOpen = () => {
+      setModalOpen(true);
+  }
+
+  const handleClose = () => {
+    setModalOpen(false);
+  };
+
+
 
   const handleArrowClick = () => {
     console.log('arrow click')
@@ -56,42 +104,36 @@ function SubjectPage(props) {
       </div> */}
 
       <div className={classes.next}>
-        {/* <div className={classes.upcoming}>
-          <h3>Upcoming Quiz</h3>
+
+      {modalOpen && (
+          <JoinQuizModal
+            openHandler={handleClickOpen}
+            closeHandler={handleClose}
+          />
+        )}
+        <div className={classes.upcoming}>
           <Marginer direction="vertical" margin={10} />
-          <Link to="/start-quiz-page">
-            <StyledButton>
-              Quiz-4
+          {/* <Link to="/start-quiz-page"> */}
+            <StyledButton onClick={handleClickOpen}>
+              Start a New Quiz
               <span className="material-icons-outlined">arrow_forward</span>
             </StyledButton>
-          </Link>
-        </div> */}
+          {/* </Link> */}
+        </div>
         <div className={classes.upcoming}>
           <h3>All Quizzes</h3>
           <Marginer direction="vertical" margin={30} />
-          {/* {props.quizzes.map((quiz) => {
-            console.log('done quiz', quiz)
-            // <Link to="/analysis-page">
-            //   <StyledButton>
-            //     Quiz-{quiz}
-            //     <span className="material-icons-outlined">assessment</span>
-            //   </StyledButton>
-            // </Link>
-          })} */}
+         
+
           <div className={classes.allQuiz}>
-            {/* <Link to="/analysis-page"> */}
-              <StyledButton>
-                Quiz-2
-                <span className="material-icons-outlined" onClick={handleArrowClick}>arrow_forward</span>
-              </StyledButton>
-            {/* </Link> */}
-            <Marginer direction="vertical" margin={10} />
-            {/* <Link to="/analysis-page"> */}
-              <StyledButton>
-                Quiz-3
-                <span className="material-icons-outlined" onClick={handleArrowClick}>arrow_forward</span>
-               </StyledButton> 
-           {/* </Link> */}
+
+          {quizzes.map (quiz => {
+              return(
+                <QuizCard data = {quiz} />
+              )
+          })}
+
+          
           </div>
         </div>
       </div>

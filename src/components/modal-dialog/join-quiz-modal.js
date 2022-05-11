@@ -13,11 +13,11 @@ import {useNavigate} from "react-router-dom";
 
 
 const defaultValues = {
-  courseId : null,
+  quizId : null,
 }
 
 
-export default function JoinCourseModal(props) {
+export default function JoinQuizModal(props) {
 
 const [formValues, setFormValues] = useState(defaultValues)
   const navigate = useNavigate();
@@ -33,46 +33,27 @@ const [formValues, setFormValues] = useState(defaultValues)
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
-    let payload = {
-        courseId : formValues.courseId
-    };
 
-    const token = fetchToken();
-    const authHeader = "bearer " + token
-
-    const response = await axios(
-                {
-                  method : "post",
-                  url : "http://localhost:8000/student-join-course",
-                  data : payload,
-                  headers: {
-                        'Authorization': authHeader
-                  }
-                }
-              );
-    
-     if(response.data.message === "Successfully joined the Class"){
-        navigate('/student-landing-page');
-     }           
+        navigate('/start-quiz-page', {state: {quizId: formValues.quizId}});
+          
   }
 
 
   return (
     <div>
       <Dialog open={props.openHandler} onClose={props.closeHandler}>
-        <DialogTitle>Join a Class</DialogTitle>
+        <DialogTitle>Start a Quiz</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Please Enter a Valid Course Code.
+            Enter a Valid Quiz Code.
           </DialogContentText>
           <TextField
             autoFocus
             margin="dense"
             id="name"
-            name = "courseId"
-            value = {formValues.courseId}
-            label="Please Enter Course Code"
+            name = "quizId"
+            value = {formValues.quizId}
+            label="Please Enter Quiz Code"
             type="text"
             fullWidth
             variant="standard"
@@ -82,7 +63,7 @@ const [formValues, setFormValues] = useState(defaultValues)
         </DialogContent>
         <DialogActions>
           <Button onClick={props.closeHandler}>Cancel</Button>
-          <Button onClick={handleSubmit}>Join Class</Button>
+          <Button onClick={handleSubmit}>Start Quiz</Button>
         </DialogActions>
       </Dialog>
     </div>

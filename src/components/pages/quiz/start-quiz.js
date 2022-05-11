@@ -1,12 +1,49 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Marginer } from "../../marginer/marginer";
 import ModalDialogs from "../../modal-dialog/modal-dialog";
 import StyledButton from "../../ui-elements/button/button";
 import classes from "./start-quiz.module.css";
+import axios from "axios";
+
+const defaultValues = {
+    _id: null,
+    course_id: null,
+    no_of_questions: null,
+    start_time: null,
+    duration: null,
+    questions: null,
+    end_time: null,
+    total_marks: null,
+    created_at: null
+}
 
 function StartQuiz() {
+
+  const { state } = useLocation();
+  const { quizId } = state;
   const [modalOpen, setModalOpen] = useState(false);
+
+  const [quizData, setQuizData] = useState({})
+
+   useEffect(() => {
+
+        const fetchData = () => {
+          const API_URL = "http://localhost:8000/quiz/" + quizId;
+
+          axios.get(API_URL).then((response) => {
+        
+            console.log(response.data);
+            setQuizData(response.data)
+            // console.log(quizData)
+
+        });
+          
+        };
+
+        fetchData();
+    }, []);
+
 
   const handleClose = (event, reason) => {
     if (reason !== "backdropClick") {
@@ -29,11 +66,11 @@ function StartQuiz() {
             fontSize: "20px",
           }}
         >
-          CSPC-402 | System Programming and Compiler Design
+          {/* CSPC-402 | System Programming and Compiler Design */}
         </h4>
       </div>
       <div className={classes.heading}>
-        <h4>QUIZ - 4</h4>
+        {/* <h4>QUIZ - 4</h4> */}
       </div>
       {modalOpen && (
         <ModalDialogs
@@ -50,11 +87,11 @@ function StartQuiz() {
       <Marginer direction="vertical" margin={15} />
       <div className={classes.aboutQuiz}>
         <div className={classes.details}>
-          <h2>Start Time: 09:00 AM</h2>
+          <h2>Start Time : 123</h2>
           <Marginer direction="vertical" margin={10} />
-          <h2>End Time: 09:30 AM</h2>
+          <h2>End Time : 1234</h2>
           <Marginer direction="vertical" margin={10} />
-          <h2>No. of Questions: 20</h2>
+          <h2>No. of Questions : XYZ</h2>
           <Marginer direction="vertical" margin={25} />
           {/* <Link to="/quiz-page"> */}
           <StyledButton onClick={handleConfirmation}>Start Quiz</StyledButton>
