@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Answers from "../../answers/answers";
 import { Marginer } from "../../marginer/marginer";
 import Timer from "../../timer/timer";
@@ -31,15 +31,23 @@ export default function Quiz(props) {
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
 
+  // let show = showScore;
+
   const handleNextQuestion = () => {
     const Next = currentQuestion + 1;
     setCurrentQuestion(Next);
     setQuestionCount(questionCount + 1);
   };
 
+  const navigate = useNavigate();
+
   const handleSubmit = () => {
-    setShowScore(true);
+    // return <Navigate to="/score-page" />;
+    // setShowScore(true);
+    navigate('/score-page', {state: {score: score}});
   };
+  console.log("setshowscore", showScore);
+
 
   const handleAnswerClick = (isCorrect) => {
     if (isCorrect === QuestionData.questions[currentQuestion].correct_option_id)
@@ -90,6 +98,7 @@ export default function Quiz(props) {
             className={classes.next}
             // routing to score-page
             // setShowScore(true)
+            // onClick={() => setShowScore(true)}
             onClick={handleSubmit}
           >
             Submit Quiz
@@ -103,6 +112,7 @@ export default function Quiz(props) {
         )}
       </div>
 
+      {console.log("quiz showScore: ", showScore, score)}
       {showScore && <Score score={score} />}
     </>
   );

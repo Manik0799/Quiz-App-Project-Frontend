@@ -6,80 +6,80 @@ import StyledButton from "../../ui-elements/button/button";
 import Subject from "../../subjects/subject";
 // import AddPlus from '@mui/icons-material/Add';
 import axios from "axios";
-import {fetchToken} from '../../../Auth'
+import { fetchToken } from "../../../Auth";
 import { Button } from "@mui/material";
+import { Marginer } from "../../marginer/marginer";
 
 function TeacherLandingPage() {
-
   const [modalOpen, setModalOpen] = useState(false);
-  const [courses, setCourses] = useState([])
+  const [courses, setCourses] = useState([]);
 
+  useEffect(() => {
+    const token = fetchToken();
+    let authHeader = "bearer " + token;
 
-    useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios({
+          method: "get",
+          url: "http://localhost:8000/teacher-fetchCourseList",
+          headers: {
+            Authorization: authHeader,
+          },
+        });
 
-        const token = fetchToken();
-        let authHeader = "bearer " + token
-        
-        const fetchData = async () => {
-            try {
-              const response = await axios(
-                {
-                  method : "get",
-                  url : "http://localhost:8000/teacher-fetchCourseList",
-                  headers: {
-                        'Authorization': authHeader
-                  }
-                }
-              );
+        setCourses(response.data);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
 
-              setCourses(response.data)
-                
-            } catch (error) {
-                console.log("error", error);
-            }
-        };
-
-        fetchData();
-    }, []);
-
-
+    fetchData();
+  }, []);
 
   const handleClickOpen = () => {
-      setModalOpen(true);
-  }
+    setModalOpen(true);
+  };
 
   const handleClose = () => {
     setModalOpen(false);
   };
 
-
   return (
-    <div>
-      <div className={classes.emptyClass}>
-        {/* <img src={emptyClass} alt="Join a class" /> */}
+    <div className={classes.Wrapper}>
+      {/* <div className={classes.emptyClass}> */}
+      {/* <img src={emptyClass} alt="Join a class" /> */}
 
-        {modalOpen && (
-          <CreateCourseModal
-            openHandler={handleClickOpen}
-            closeHandler={handleClose}
-          />
-        )}
+      {modalOpen && (
+        <CreateCourseModal
+          openHandler={handleClickOpen}
+          closeHandler={handleClose}
+        />
+      )}
 
-        <div className={classes.btnWrapper}> 
-          {/* <Button variant="outlined">Create Class</Button>  */}
-          <StyledButton variant="contained" onClick={handleClickOpen}> 
-            Create Class 
-          </StyledButton> 
-         </div>
-        
+      <div className={classes.btnWrapper}>
+        {/* <Button variant="outlined">Create Class</Button>  */}
+        <StyledButton variant="contained" onClick={handleClickOpen}>
+          Create Class
+        </StyledButton>
       </div>
-      {/* <CustomizedDialogs /> */}
-      
-            
+
       {/* Mapping the fetched course data to display subject cards */}
-      {courses.map(course => {
-        return <Subject key = {course.id} code = {course.course_code} name = {course.course_name}/>
-      })}
+      <div className={classes.clsWrapper}>
+        {courses.map((course) => {
+          return (
+            <>
+              <Subject
+                key={course.id}
+                code={course.course_code}
+                name={course.course_name}
+                role='teacher'
+              />
+              <Marginer direction="horizontal" margin={40} />
+            </>
+          );
+        })}
+      </div>
       {/* <Subject /> */}
     </div>
   );

@@ -43,7 +43,7 @@ function StartQuiz() {
           title="Continue?"
           button1="Agree"
           bulletList1="The next page will open on fullscreen."
-          bulletList2="camera access will be prompted."
+          bulletList2="Camera access will be prompted."
           bulletList3="If you exit the fullscreen, the quiz will be auto submitted."
         />
       )}

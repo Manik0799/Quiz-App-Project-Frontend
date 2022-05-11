@@ -7,6 +7,7 @@ import Subject from "../../subjects/subject";
 import axios from "axios";
 import {fetchToken} from '../../../Auth'
 import JoinCourseModal from "../../modal-dialog/join-course-modal";
+import {Marginer} from '../../marginer/marginer';
 
 function StudentLandPage() {
 
@@ -40,7 +41,7 @@ function StudentLandPage() {
         fetchData();
     }, []);
 
-    console.log(courses);
+    console.log("courses state: ", courses);
 
   const handleClickOpen = () => {
       setModalOpen(true);
@@ -51,10 +52,9 @@ function StudentLandPage() {
   };
 
   return (
-    <div>
-      <div className={classes.emptyClass}>
+    <div className={classes.Wrapper}>
+      {/* <div className={classes.emptyClass}> */}
         {/* <img src={emptyClass} alt="Join a class" /> */}
-
         {modalOpen && (
           <JoinCourseModal
             openHandler={handleClickOpen}
@@ -68,24 +68,24 @@ function StudentLandPage() {
             Join Class
           </StyledButton> 
          </div>
-
-        {/* <div className={classes.btnWrapper}> */}
-          {/* <Button variant="outlined">Create Class</Button> */}
-          {/* <StyledButton variant="contained" onClick={handleClick}> */}
-            {/* Join Class */}
-          {/* </StyledButton> */}
-        {/* </div> */}
-        
-      </div>
-      {/* <CustomizedDialogs /> */}
-      
+    
 
       {/* Mapping the fetched course data to display subject cards */}
+      <div className={classes.clsWrapper}>
       {courses.map(course => {
-        return <Subject key = {course.id} code = {course.course_code} name = {course.course_name}
-          id = {course.id}
-        />
+        return (
+          <>
+            <Subject
+              key={course.id}
+              code={course.course_code}
+              name={course.course_name}
+              id={course.id}
+            />
+            <Marginer direction='horizontal' margin={40}/>
+          </>
+        ); 
       })}
+      </div>
       {/* <Subject /> */}
     </div>
   );

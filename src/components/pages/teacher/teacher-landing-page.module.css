@@ -1,23 +1,13 @@
-.emptyClass {
+.wrapper {
   display: flex;
-  flex-direction: column;
-  text-align: center;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  padding: 11px;
-}
-.emptyClass img {
-    width: 200px;
-    height: 200px;
+  flex-direction: row;
+
 }
 
 .btnWrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   padding: 20px;
+  padding-left: 0;
 }
 
 .btnWrapper Button {
@@ -27,4 +17,9 @@
 
 .btnWrapper Button:hover {
     background-color: var(--hover);
+}
+
+.clsWrapper {
+  display: flex;
+  flex-direction: column;
 }
