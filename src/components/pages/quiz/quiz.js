@@ -9,8 +9,8 @@ import QuestionData from "../../questions/questions.json";
 import Score from "../score-page/score";
 import classes from "./quiz.module.css";
 import Checkbox from "../../ui-elements/checkbox/checkbox";
-
 import StyledButton from "../../ui-elements/button/button";
+import WebCam from "../../webcam/webcam";
 
 export default function Quiz(props) {
   if (screenfull.isEnabled) {
@@ -38,11 +38,10 @@ export default function Quiz(props) {
   };
 
   const handleSubmit = () => {
-    setShowScore(true)
+    setShowScore(true);
   };
 
   const handleAnswerClick = (isCorrect) => {
-
     if (isCorrect === QuestionData.questions[currentQuestion].correct_option_id)
       setScore(score + QuestionData.questions[currentQuestion].max_marks);
   };
@@ -54,6 +53,10 @@ export default function Quiz(props) {
         <Timer />
         <span className="material-icons-outlined">timer</span>
       </div>
+      <div className={classes.camWrapper}>
+        <WebCam />
+      </div>
+
       <Marginer direction="vertical" margin={15} />
       {/* <h1>Why is the weather so hot? 🥵</h1> */}
       <h1>{QuestionData.questions[currentQuestion].question}</h1>

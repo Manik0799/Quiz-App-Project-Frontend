@@ -23,6 +23,7 @@
     "react-full-screen": "^1.1.0",
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
+    "react-webcam": "^7.0.1",
     "screenfull-react": "^0.0.4",
     "styled-components": "^5.3.5",
     "web-vitals": "^2.1.4"

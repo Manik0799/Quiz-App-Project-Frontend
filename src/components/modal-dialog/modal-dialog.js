@@ -87,6 +87,7 @@ export default function ModalDialogs(props) {
           <ul>
             <li>{props.bulletList1}</li>
             <li>{props.bulletList2}</li>
+            <li>{props.bulletList3}</li>
           </ul>
         </DialogContent>
 
