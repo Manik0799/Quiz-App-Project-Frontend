@@ -55,6 +55,15 @@ function App() {
                 }
               />
               <Route
+                path="/teacher-subject-landing-page"
+                element={
+                  <>
+                    <NavBar />
+                    <SubjectPage />
+                  </>
+                }
+              />
+              <Route
                 path="/start-quiz-page"
                 element={
                   <>

@@ -1,0 +1,56 @@
+.heading {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between;  if we want something on the right side*/
+}
+
+.analysis {
+  display: flex;
+}
+
+.analysis a {
+  font-size: 22px;
+  vertical-align: center;
+  text-decoration: none;
+  color: var(--fontPrimary);
+}
+
+.all {
+  display: flex;
+  flex-direction: row;
+}
+
+.next {
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.next span {
+  color: #fff;
+  font-size: 18px;
+}
+
+.upcoming {
+    display: flex;
+    flex-direction: column;
+}
+
+.done {
+    display: flex;
+    flex-direction: column;
+}
+
+.done span {
+  font-size: 22px;
+  vertical-align: center;
+  text-decoration: none;
+  color: #fff;
+  font-weight:200;
+}
+
+.allQuiz button {
+ font-size: 20px;
+padding: 10px 30px;
+
+}

@@ -40,7 +40,9 @@ const Login = () => {
       password : formValues.password
     }
 
+    try{
 
+    
     let response = await axios({
         method : "post",
         url : "http://localhost:8000/login",
@@ -49,7 +51,6 @@ const Login = () => {
                     'Content-Type': 'application/json'
                 }
     })
-
     if(response.data.access_token){
       setToken(response.data.access_token);
 
@@ -63,6 +64,9 @@ const Login = () => {
     else{
       setError(true)
     }
+  } catch (error){
+    alert('Invalid Credentials')
+  }
 
   };
 

@@ -27,6 +27,10 @@ export default function Quiz() {
     //   console.error("Failed to enable fullscreen", event);
     //   alert('Failed to enable fullscreen');
     // });
+    screenfull.on('error', () => {
+      localStorage.removeItem('userToken');
+      navigate('/');
+    })
   }
 
   let max = quizData.no_of_questions;
@@ -37,6 +41,7 @@ export default function Quiz() {
   const [questionCount, setQuestionCount] = useState(0);
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
+
   const [answers, setAnswers] = useState([])
   const [base64_string, setBase64String] = useState()
   // let show = showScore;
@@ -72,9 +77,10 @@ export default function Quiz() {
                   }
                 }
               );
+      
     
     
-    navigate('/score-page', {state: {score: score}});
+    navigate('/score-page', {state: {score: response.data.total_marks}});
   };
 
 
@@ -93,6 +99,7 @@ export default function Quiz() {
 
     if (isCorrect === quizData.questions[currentQuestion].correct_option_id){
       setScore(score + quizData.questions[currentQuestion].max_marks);
+      console.log(score)
     }
   };
 

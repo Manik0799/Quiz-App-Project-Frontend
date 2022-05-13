@@ -76,11 +76,11 @@ export default function Account() {
              <p>{user_data.email}</p>
           </MenuItem>
           <MenuItem onClick={handleCollapseDetails}>
-             <p>{user_data.userType}</p>
+             <strong>{user_data.userType.charAt(0).toUpperCase() + user_data.userType.slice(1)}</strong>
           </MenuItem>
-          <MenuItem>
+          {/* <MenuItem>
             <Link to="/change-password-page">Change Password</Link>
-          </MenuItem>
+          </MenuItem> */}
           <MenuItem onClick={signOut}>
             <p>Signout</p>
           </MenuItem>

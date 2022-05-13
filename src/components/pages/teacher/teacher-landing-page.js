@@ -9,6 +9,7 @@ import axios from "axios";
 import { fetchToken } from "../../../Auth";
 import { Button } from "@mui/material";
 import { Marginer } from "../../marginer/marginer";
+import TeacherSubject from "../../subjects/teacher-subject";
 
 function TeacherLandingPage() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -69,10 +70,11 @@ function TeacherLandingPage() {
         {courses.map((course) => {
           return (
             <>
-              <Subject
+              <TeacherSubject
                 key={course.id}
                 code={course.course_code}
                 name={course.course_name}
+                id={course.id}
                 role='teacher'
               />
               <Marginer direction="horizontal" margin={40} />

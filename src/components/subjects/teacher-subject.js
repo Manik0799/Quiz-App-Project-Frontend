@@ -19,31 +19,19 @@ import axios from "axios";
 import SubjectPage from "../pages/student-dashboard/subject-landing-page";
 import { useNavigate, Navigate } from "react-router-dom";
 
-export default function Subject(props) {
+export default function TeacherSubject(props) {
   const [courseList, setCourseList] = useState([]);
   const [subjectlandPage, setSubjectlandPage] = useState(false);
   console.log("subjectlandpage", subjectlandPage);
 
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  const handleSubjectCardClick = async () => {
-    // Make request to the fetch course information API
-    const API_URL = "http://localhost:8000/course/" + props.id;
+//   useEffect(() => {
+  const handleSubjectCardClick = () => {
 
-    // const response = await axios({
-    //   method: "get",
-    //   url: API_URL,
+    navigate('/create-quiz', {state: {courseId: props.id}});
+  }
     // });
-
-    axios.get(API_URL).then((response) => {
-      console.log(response);
-      setCourseList(response.data);
-      setSubjectlandPage(true);
-
-      
-    navigate('/subject-landing-page', {state: {courses: response.data}});
-    });
 
     // setCourseList([...courseList, response.data]);
     // setSubjectlandPage(true);
@@ -60,7 +48,7 @@ export default function Subject(props) {
 
     // navigate('/subject-landing-page')
     // return <Navigate to='/subject-landing-page' />
-  };
+
   //   handleSubjectCardClick();
   // }, [props.id]);
 
@@ -103,38 +91,17 @@ export default function Subject(props) {
             </IconButton>
           {/* </Link> */}
           {/* {console.log("whre are the props", props.role)} */}
-          {props.role === "teacher" ? (
-            ((
-              <Link to="/create-quiz">
-                <IconButton aria-label="create-quiz" sx={{ color: blue[900] }}>
-                  <AddOutlinedIcon />
-                </IconButton>
-              </Link>
-            ),
-            (
-              /* send id as props to create-quiz page */
-              <Link to="/teacher-subject-landing-page">
+           
+            {/* <Link to="/create-quiz"> */}
               <IconButton
                 aria-label="details"
                 sx={{ color: blue[900], marginLeft: 32 }}
                 onClick={handleSubjectCardClick}
               >
-                <ArrowForwardOutlined />
+                <AddOutlinedIcon />
               </IconButton>
-              </Link>
-            ))
-          ) : (
-            // </Link>
-            <Link to="/subject-landing-page">
-              <IconButton
-                aria-label="details"
-                sx={{ color: blue[900], marginLeft: 32 }}
-                onClick={handleSubjectCardClick}
-              >
-                <ArrowForwardOutlined />
-              </IconButton>
-            </Link>
-          )}
+            {/* </Link> */}
+        
         </CardActions>
       </Card>
     </>

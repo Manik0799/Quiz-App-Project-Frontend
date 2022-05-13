@@ -32,7 +32,7 @@ const Signup = () => {
     role: "teacher",
   });
 
-  console.log("default", formValues)
+  // console.log("default", formValues)
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormValues({
@@ -46,7 +46,7 @@ const Signup = () => {
       ...formValues,
       role: event.target.value
     });
-      console.log("roleChange", formValues);
+      // console.log("roleChange", formValues);
 
   };
 
@@ -70,7 +70,7 @@ const Signup = () => {
           "Content-Type": "application/json",
         },
       });
-      console.log(response.data);
+      // console.log(response.data);
     } else if (formValues.role === "teacher") {
       let payload = {
         name: formValues.fullname,
@@ -86,7 +86,10 @@ const Signup = () => {
           "Content-Type": "application/json",
         },
       });
-      console.log(response.data);
+      // console.log(response.data);
+      if(response.data){
+        alert(response.data.message)
+      }
     }
 
     navigate("/");
