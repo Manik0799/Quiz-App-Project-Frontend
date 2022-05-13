@@ -27,10 +27,10 @@ export default function Quiz() {
     //   console.error("Failed to enable fullscreen", event);
     //   alert('Failed to enable fullscreen');
     // });
-    screenfull.on('error', () => {
-      localStorage.removeItem('userToken');
-      navigate('/');
-    })
+    // screenfull.on('change', () => {
+    //   localStorage.removeItem('userToken');
+    //   navigate('/');
+    // })
   }
 
   let max = quizData.no_of_questions;
