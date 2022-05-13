@@ -126,7 +126,12 @@ function SubjectPage(props) {
 
           <div className={classes.allQuiz}>
             {quizzes.map((quiz) => {
-              return <QuizCard data={quiz} />;
+              return (
+                <>
+                <Marginer direction="vertical" margin={30} />
+                <QuizCard data={quiz} />
+                </>
+                );
             })}
           </div>
         </div>

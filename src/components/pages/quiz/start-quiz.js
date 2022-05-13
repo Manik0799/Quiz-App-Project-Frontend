@@ -24,25 +24,32 @@ function StartQuiz() {
   const { quizId } = state;
   const [modalOpen, setModalOpen] = useState(false);
 
-  const [quizData, setQuizData] = useState({})
+  const [quizData, setQuizData] = useState();
+
 
    useEffect(() => {
 
-        const fetchData = () => {
-          const API_URL = "http://localhost:8000/quiz/" + quizId;
-
-          axios.get(API_URL).then((response) => {
-        
-            console.log(response.data);
-            setQuizData(response.data)
-            // console.log(quizData)
-
-        });
-          
+    const fetchData = async () => {
+      const API_URL = "http://localhost:8000/quiz/" + quizId;
+            try {
+              const response = await axios(
+                {
+                  method : "get",
+                  url : API_URL,
+                 
+                }
+              );
+              // console.log(response.data)
+              setQuizData(response.data)
+                
+            } catch (error) {
+                console.log("error", error);
+            }
         };
 
         fetchData();
     }, []);
+
 
 
   const handleClose = (event, reason) => {
@@ -57,6 +64,7 @@ function StartQuiz() {
   };
   return (
     <>
+    {console.log(quizData)}
       <div className={classes.heading}>
         {/*required for finite borderBottom */}
         <h4
@@ -79,6 +87,7 @@ function StartQuiz() {
           hideBackdrop={true}
           title="Continue?"
           button1="Agree"
+          quizData = {quizData}
           bulletList1="The next page will open on fullscreen."
           bulletList2="Camera access will be prompted."
           bulletList3="If you exit the fullscreen, the quiz will be auto submitted."
@@ -87,11 +96,14 @@ function StartQuiz() {
       <Marginer direction="vertical" margin={15} />
       <div className={classes.aboutQuiz}>
         <div className={classes.details}>
-          <h2>Start Time : 123</h2>
+          {/* <h2>Start Time : 123</h2> */}
+          <h2>Start Time : {quizData === undefined ? "Loading..." :  Date(quizData.start_time)}</h2>
           <Marginer direction="vertical" margin={10} />
-          <h2>End Time : 1234</h2>
+          {/* <h2>End Time : 1234</h2> */}
+          <h2>End Time : {quizData === undefined ? "Loading..." :  Date(quizData.end_time)}</h2>
           <Marginer direction="vertical" margin={10} />
-          <h2>No. of Questions : XYZ</h2>
+          {/* <h2>No. of Questions : XYZ</h2> */}
+          <h2>No of Questions : {quizData === undefined ? "Loading..." : quizData.no_of_questions}</h2>
           <Marginer direction="vertical" margin={25} />
           {/* <Link to="/quiz-page"> */}
           <StyledButton onClick={handleConfirmation}>Start Quiz</StyledButton>
@@ -102,7 +114,7 @@ function StartQuiz() {
           <h2>Instructions</h2>
           <Marginer direction="vertical" margin={15} />
           <p>
-            This quiz consists of 20 multiple-choice questions. It will also be
+            This quiz consists of {quizData === undefined ? "Loading..." :  quizData.no_of_questions} multiple-choice questions. It will also be
           </p>
           <p>
             extremely useful to study the key terms at the end of the chapter
@@ -110,23 +122,16 @@ function StartQuiz() {
           <p>and review the activity at the end of the chapter.</p>
           <Marginer direction="vertical" margin={15} />
           <ul>
-            <li>
-              <strong>Multiple Attempts</strong> - You will have three attempts
-              for this quiz
-              <br />
-              with your highest score being recorded in the grade book.
-            </li>
-            <br />
+           
             <li>
               <strong>Timing</strong> - You will need to complete each of your
-              attempts in one
+              attempts in the given time only
               <br />
-              sitting, as you are allotted 30 minutes to complete each attempt
             </li>
           </ul>
           <Marginer direction="vertical" margin={25} />
           <p>
-            To start, click the <strong>"Take the Quiz"</strong> button.
+            To start, click the <strong>"Start Quiz"</strong> button.
           </p>
           <p>
             When finished, click the <strong>"Submit Quiz"</strong> button.

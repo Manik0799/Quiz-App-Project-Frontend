@@ -34,7 +34,7 @@ const [formValues, setFormValues] = useState(defaultValues)
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-        navigate('/start-quiz-page', {state: {quizId: formValues.quizId}});
+      navigate('/start-quiz-page', {state: {quizId: formValues.quizId}});
           
   }
 

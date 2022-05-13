@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Answers from "../../answers/answers";
 import { Marginer } from "../../marginer/marginer";
 import Timer from "../../timer/timer";
@@ -11,8 +11,15 @@ import classes from "./quiz.module.css";
 import Checkbox from "../../ui-elements/checkbox/checkbox";
 import StyledButton from "../../ui-elements/button/button";
 import WebCam from "../../webcam/webcam";
+import axios from "axios";
+import { fetchToken } from "../../../Auth";
 
 export default function Quiz() {
+
+  const {state} = useLocation();
+  const {quizData} = state;
+
+
   if (screenfull.isEnabled) {
     screenfull.request();
 
@@ -22,15 +29,16 @@ export default function Quiz() {
     // });
   }
 
-  let max = QuestionData.no_of_questions;
+  let max = quizData.no_of_questions;
   let min = 0;
-  console.log("===max , no of ques", max);
+  // console.log("===max , no of ques", max);
   // const [currentQuestion, setCurrentQuestion] = useState(Math.floor(Math.random() * max));
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [questionCount, setQuestionCount] = useState(0);
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
-
+  const [answers, setAnswers] = useState([])
+  const [base64_string, setBase64String] = useState()
   // let show = showScore;
 
   const handleNextQuestion = () => {
@@ -41,17 +49,51 @@ export default function Quiz() {
 
   const navigate = useNavigate();
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     // return <Navigate to="/score-page" />;
     // setShowScore(true);
+
+    const api_payload = {
+      quiz_id : quizData._id,
+      course_id : quizData.course_id,
+      answers : answers
+    }
+
+    const token = fetchToken();
+    let authHeader = "bearer " + token;
+
+    const response = await axios(
+                {
+                  method : "post",
+                  url : "http://localhost:8000/quiz/submit-quiz",
+                  data : api_payload,
+                  headers: {
+                        'Authorization': authHeader
+                  }
+                }
+              );
+    
+    
     navigate('/score-page', {state: {score: score}});
   };
-  console.log("setshowscore", showScore);
 
 
-  const handleAnswerClick = (isCorrect) => {
-    if (isCorrect === QuestionData.questions[currentQuestion].correct_option_id)
-      setScore(score + QuestionData.questions[currentQuestion].max_marks);
+  const handleBase64String = (imageSrc) => {
+    setBase64String(imageSrc)
+    console.log('base', base64_string)
+  }
+  const handleAnswerClick = (question_id, isCorrect) => {
+    let new_answer = {
+      question_id : question_id,
+      marked_option_id : parseInt(isCorrect)
+    }
+
+    setAnswers([...answers, new_answer])
+    // console.log(answers)
+
+    if (isCorrect === quizData.questions[currentQuestion].correct_option_id){
+      setScore(score + quizData.questions[currentQuestion].max_marks);
+    }
   };
 
   return (
@@ -62,25 +104,27 @@ export default function Quiz() {
         <span className="material-icons-outlined">timer</span>
       </div>
       <div className={classes.camWrapper}>
-        <WebCam />
+        <WebCam handleString = {handleBase64String}/>
       </div>
 
       <Marginer direction="vertical" margin={15} />
-      {/* <h1>Why is the weather so hot? 🥵</h1> */}
-      <h1>{QuestionData.questions[currentQuestion].question}</h1>
-      <h4>Question can have multiple answers...</h4>
-      {/*dont show this under every question, instead keep under instructions*/}
+
+      <h1>{quizData.questions[currentQuestion].question}</h1>
       <div className={classes.answers}>
-        {QuestionData.questions[currentQuestion].options.map((ans, idx) => {
+
+        {quizData.questions[currentQuestion].options.map((ans, idx) => {
           return (
+            <form>
             <Checkbox
               className={classes.answer}
               key={ans.description}
+              // id = {ans.option_id}
               // value={ans.description}
               // name={ans.description}
               text={ans.description}
-              onClick={(e) => handleAnswerClick(ans.option_id)}
+              onClick={(e) => handleAnswerClick(quizData.questions[currentQuestion].question_id, ans.option_id)}
             />
+            </form>
           );
         })}
       </div>

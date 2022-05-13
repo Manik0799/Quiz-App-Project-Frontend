@@ -7,21 +7,28 @@ const videoConstraints = {
   facingMode: "user",
 };
 
-function WebCam() {
+function WebCam({handleString}) {
   const [imgs, setImgs] = useState([]);
+  //const [imageSrc, setImageSrc] = useState();
 
     const webcamRef = useRef(null);
+    let imageSrc;
     const capture = useCallback(() => {
-      const imageSrc = webcamRef.current.getScreenshot();
-    console.log("captured", imageSrc);
-
+      imageSrc = webcamRef.current.getScreenshot();
+      // console.log(image)
+      // setImageSrc(image);
+      // console.log(imageSrc)
+    // console.log("captured", imageSrc);
     }, [webcamRef]);
 
     useEffect(() => {
       const interval = setInterval(() => {
           capture()
-        console.log("calling every 15 seconds");
-      }, 15000);
+        // console.log("calling every 15 seconds");
+        // console.log(imageSrc)
+          handleString(imageSrc);
+
+      }, 10000);
 
       return () => clearInterval(interval);
     }, []);

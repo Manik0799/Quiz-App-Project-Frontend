@@ -15,7 +15,7 @@ import FieldSet from "../ui-elements/textField/textField";
 import Quiz from "../pages/quiz/quiz";
 // import { DocumentFullScreen } from "@chiragrupani/fullscreen-react";
 // import { FullScreen, useFullScreenHandle } from "react-full-screen";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -62,7 +62,10 @@ export default function ModalDialogs(props) {
   // const handle = useFullScreenHandle();
 
   // const handleJoinClass = () => {};
-
+  const navigate = useNavigate();
+  const handleQuizOpen = () => {
+    navigate('/quiz-page', {state : {quizData : props.quizData}})
+  };
 
   return (
     <div>
@@ -109,13 +112,13 @@ export default function ModalDialogs(props) {
         
         
         <DialogActions>
-          {props.title === 'Continue?' ? (<Link to='/quiz-page'>
+          {props.title === 'Continue?' ? (
               <StyledButton
-            autoFocus
+            autoFocus onClick = {handleQuizOpen}
           >
             {props.button1}
           </StyledButton>
-            </Link>) : 
+            ) : 
             <StyledButton>{props.button1}</StyledButton>
             }
           
