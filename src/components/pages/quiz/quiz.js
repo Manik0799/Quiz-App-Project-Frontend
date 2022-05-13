@@ -12,7 +12,7 @@ import Checkbox from "../../ui-elements/checkbox/checkbox";
 import StyledButton from "../../ui-elements/button/button";
 import WebCam from "../../webcam/webcam";
 
-export default function Quiz(props) {
+export default function Quiz() {
   if (screenfull.isEnabled) {
     screenfull.request();
 

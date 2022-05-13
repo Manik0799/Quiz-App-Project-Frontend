@@ -13,8 +13,8 @@ import classes from "./modal-dialog.module.css";
 import StyledButton from "../ui-elements/button/button";
 import FieldSet from "../ui-elements/textField/textField";
 import Quiz from "../pages/quiz/quiz";
-import { DocumentFullScreen } from "@chiragrupani/fullscreen-react";
-import { FullScreen, useFullScreenHandle } from "react-full-screen";
+// import { DocumentFullScreen } from "@chiragrupani/fullscreen-react";
+// import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import { Link } from "react-router-dom";
 
 
@@ -58,10 +58,10 @@ BootstrapDialogTitle.propTypes = {
 };
 
 export default function ModalDialogs(props) {
-  let [isFullScreen, setFullScreen] = useState(false);
-  const handle = useFullScreenHandle();
+  // let [isFullScreen, setFullScreen] = useState(false);
+  // const handle = useFullScreenHandle();
 
-  const handleJoinClass = () => {};
+  // const handleJoinClass = () => {};
 
 
   return (
@@ -105,8 +105,8 @@ export default function ModalDialogs(props) {
         )}
 
         
-            {isFullScreen && <Quiz />
-        }
+            {/* {isFullScreen && <Quiz /> */}
+        
         
         <DialogActions>
           {props.title === 'Continue?' ? (<Link to='/quiz-page'>
@@ -116,7 +116,7 @@ export default function ModalDialogs(props) {
             {props.button1}
           </StyledButton>
             </Link>) : 
-            <StyledButton onClick={handleJoinClass}>{props.button1}</StyledButton>
+            <StyledButton>{props.button1}</StyledButton>
             }
           
         </DialogActions>
