@@ -115,7 +115,7 @@ export default function Subject(props) {
               // <Link to="/subject-landing-page">
               <IconButton
                 aria-label="details"
-                sx={{ color: blue[900], marginLeft: 27 }}
+                sx={{ color: blue[900], marginLeft: 32 }}
                 onClick={handleSubjectCardClick}
               >
                 <ArrowForwardOutlined />

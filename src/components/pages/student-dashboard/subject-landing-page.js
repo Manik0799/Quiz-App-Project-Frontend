@@ -104,8 +104,7 @@ function SubjectPage(props) {
       </div> */}
 
       <div className={classes.next}>
-
-      {modalOpen && (
+        {modalOpen && (
           <JoinQuizModal
             openHandler={handleClickOpen}
             closeHandler={handleClose}
@@ -114,26 +113,21 @@ function SubjectPage(props) {
         <div className={classes.upcoming}>
           <Marginer direction="vertical" margin={10} />
           {/* <Link to="/start-quiz-page"> */}
-            <StyledButton onClick={handleClickOpen}>
-              Start a New Quiz
-              <span className="material-icons-outlined">arrow_forward</span>
-            </StyledButton>
+          <StyledButton onClick={handleClickOpen}>
+            Start a New Quiz
+            <span className="material-icons-outlined">arrow_forward</span>
+          </StyledButton>
           {/* </Link> */}
-        </div>
-        <div className={classes.upcoming}>
+
+          <Marginer direction="vertical" margin={25} />
+
           <h3>All Quizzes</h3>
           <Marginer direction="vertical" margin={30} />
-         
 
           <div className={classes.allQuiz}>
-
-          {quizzes.map (quiz => {
-              return(
-                <QuizCard data = {quiz} />
-              )
-          })}
-
-          
+            {quizzes.map((quiz) => {
+              return <QuizCard data={quiz} />;
+            })}
           </div>
         </div>
       </div>
