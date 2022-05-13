@@ -74,7 +74,11 @@ function StartQuiz() {
             fontSize: "20px",
           }}
         >
-          {/* CSPC-402 | System Programming and Compiler Design */}
+        {quizData === undefined ? "Loading" : quizData.course_code}
+        <span>  </span>
+        |
+        <span>  </span>
+        {quizData === undefined ? "..." : quizData.course_name}
         </h4>
       </div>
       <div className={classes.heading}>
@@ -97,16 +101,19 @@ function StartQuiz() {
       <div className={classes.aboutQuiz}>
         <div className={classes.details}>
           {/* <h2>Start Time : 123</h2> */}
-          <h2>Start Time : {quizData === undefined ? "Loading..." :  Date(quizData.start_time)}</h2>
+          <h2>Start Time : {quizData === undefined ? "Loading..." :  quizData.start_time}</h2>
           <Marginer direction="vertical" margin={10} />
           {/* <h2>End Time : 1234</h2> */}
-          <h2>End Time : {quizData === undefined ? "Loading..." :  Date(quizData.end_time)}</h2>
+          <h2>End Time : {quizData === undefined ? "Loading..." :  quizData.end_time}</h2>
           <Marginer direction="vertical" margin={10} />
           {/* <h2>No. of Questions : XYZ</h2> */}
           <h2>No of Questions : {quizData === undefined ? "Loading..." : quizData.no_of_questions}</h2>
           <Marginer direction="vertical" margin={25} />
           {/* <Link to="/quiz-page"> */}
+          {quizData === undefined ? 
+          <StyledButton disabled onClick={handleConfirmation}>Start Quiz</StyledButton> : 
           <StyledButton onClick={handleConfirmation}>Start Quiz</StyledButton>
+          }
           {/* </Link> */}
         </div>
 

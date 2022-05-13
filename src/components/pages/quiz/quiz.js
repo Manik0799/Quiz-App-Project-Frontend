@@ -13,6 +13,7 @@ import StyledButton from "../../ui-elements/button/button";
 import WebCam from "../../webcam/webcam";
 import axios from "axios";
 import { fetchToken } from "../../../Auth";
+import base64_data from "./base64.json";
 
 export default function Quiz() {
 
@@ -78,9 +79,21 @@ export default function Quiz() {
                 }
               );
       
-    
-    
-    navigate('/score-page', {state: {score: response.data.total_marks}});
+      const api_s3_payload = {
+        course_id : quizData.course_id,
+        base64_string : base64_data.value
+      }
+
+      const api_response = await axios(
+                {
+                  method : "post",
+                  url : "http://localhost:8000/student-quiz-images",
+                  data : api_s3_payload
+                }
+              );
+      
+      console.log(api_response)
+      navigate('/score-page', {state: {score: response.data.total_marks}});
   };
 
 
@@ -111,7 +124,8 @@ export default function Quiz() {
         <span className="material-icons-outlined">timer</span>
       </div>
       <div className={classes.camWrapper}>
-        <WebCam handleString = {handleBase64String}/>
+        {/* <WebCam handleString = {handleBase64String}/> */}
+        <WebCam />
       </div>
 
       <Marginer direction="vertical" margin={15} />

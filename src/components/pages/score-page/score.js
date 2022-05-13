@@ -12,30 +12,33 @@ function Score(props) {
   // const [showScore, setShowScore] = useState(false);
 
   const state = useLocation();
-  console.log(state);
+  // console.log(state);
 
-console.log("===score props", props.score);
+// console.log("===score props", props.score);
   return (
+    <>
+            <Marginer direction = "vertical" margin = {80} />
+
     <div className={classes.summary}>
+
       <div className={classes.point}>
         <p className={classes.score}>
-          Your score is <br />{state.state.score} out of {QuestionData.total_marks}
+          Your score is {state.state.score} out of {QuestionData.total_marks}
         </p>
+        <Link to='/student-landing-page'>
+        <StyledButton >
+          Go To Home
+        </StyledButton>
+      </Link>
       </div>
 
       <div className={classes.badge}>
         <img src={successImage} alt="Success" />
       </div>
 
-      <div >  
-      <Link to='/student-landing-page'>
-        <StyledButton >
-          Go To Home
-        </StyledButton>
-      </Link>
-        <Question />
-      </div>
+     
     </div>
+    </>
   );
 }
 

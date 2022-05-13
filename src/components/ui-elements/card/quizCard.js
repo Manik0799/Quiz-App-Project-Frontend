@@ -38,7 +38,7 @@ export default function QuizCard({data}) {
                 }
               );
         
-              console.log(response.data)
+              alert("Mail sent with marked responses data !!!")
 
     }
 
