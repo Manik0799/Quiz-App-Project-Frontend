@@ -70,7 +70,12 @@ const Signup = () => {
           "Content-Type": "application/json",
         },
       });
-      // console.log(response.data);
+
+      // console.log(response.data.message);
+      if(response.data){
+        alert(response.data.message)
+      }
+
     } else if (formValues.role === "teacher") {
       let payload = {
         name: formValues.fullname,
@@ -86,7 +91,7 @@ const Signup = () => {
           "Content-Type": "application/json",
         },
       });
-      // console.log(response.data);
+      // console.log(response.data.message);
       if(response.data){
         alert(response.data.message)
       }
